@@ -275,7 +275,7 @@ SELECT students.name, students.second_name, marks.value, marks.lesson_id
 FROM students
 -- Соединяем таблицу marks с таблицей students по полю student_id
 LEFT JOIN marks on students.id = marks.student_id
--- Фильтруем результаты, чтобы выбрать записи только для студента с именем "Vladimir" и фамилией "Shambaryan"
+-- Фильтруем результаты, чтобы выбрать записи только для студента с именем "Donald" и фамилией "Trump"
 WHERE name = 'Donald'
 AND second_name = 'Trump'
 ==
@@ -285,7 +285,7 @@ SELECT students.name, students.second_name, books.title
 FROM students
 -- Соединяем таблицу books с таблицей students по полю taken_by_student_id
 LEFT JOIN books on students.id = books.taken_by_student_id
--- Фильтруем результаты, чтобы выбрать записи только для студента с именем "Vladimir" и фамилией "Shambaryan"
+-- Фильтруем результаты, чтобы выбрать записи только для студента с именем "Donald" и фамилией "Trump"
 WHERE students.name = 'Donald' AND students.second_name = 'Trump'
 ==
 SELECT students.name, students.second_name, `groups`.title AS group_title, `groups`.start_date, `groups`.end_date, 
