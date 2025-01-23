@@ -182,6 +182,55 @@ SELECT * # второц с конца
 FROM students 
 ORDER BY id DESC LIMIT 1, 1
 ==
+SELECT email
+FROM giveaway 
+ORDER BY total_amount DESC
+limit 5
+==
+SELECT player_name, set_1 + set_2 + set_3 AS TOTAL  # выбрать имена игроков и общее количество очков как Total
+FROM matches
+==
+SELECT title, genre, rating  # выбрать title, genre и rating фильтровать по genre 'Action' упорядочить по rating
+FROM movies
+WHERE genre = 'Action' 
+ORDER BY rating DESC 
+==
+SELECT name, price  # выбрать name десерта и price где название содержит 'chocolate'
+FROM desserts
+WHERE name LIKE 'chocolate%'
+==
+SELECT title, artist # выбрать title песни и artist из таблицы songs где title песни содержит слово 'love' и упорядочьте результаты по убыванию рейтинга
+FROM songs
+WHERE title LIKE '%Love%'
+ORDER by rating DESC 
+==
+SELECT make, model, price_per_day  # table name: cars выбрать make машины, model и price per day где цена за день меньше или равна $100
+FROM cars
+WHERE price_per_day <= 100
+==
+SELECT name, price, discount  # таблицa: productsвыбрать name, price и discount где скидка больше 0 упорядочить по убыванию price discount
+FROM products
+WHERE discount > 0
+ORDER BY discount DESC 
+==
+SELECT topic, sum(likes)   # таблицa: posts извлечь сумму likes для каждой темы
+FROM posts
+GROUP by topic
+==
+SELECT DISTINCT subject   # таблицa: teachers выбрать уникальные subjects в школе
+FROM teachers
+GROUP by subject
+==
+SELECT name, surname   # таблицa: orders выбрать имя, фамилию тех, кто имеет идентификатор ticket и сидит в рядах 1-5
+FROM orders
+WHERE pre_book = true and seat_num is NOT NULL 
+==
+SELECT team, AVG(goals)   # таблицa: games вычислить среднее количество забитых голов для каждой команды во время игр в Miami
+FROM games
+WHERE city = 'Miami'
+GROUP BY team
+==
+
 
 
 
