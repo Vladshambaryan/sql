@@ -51,6 +51,10 @@ ORDER BY price DESC LIMIT 10 #  Ограничивает результат вы
 SELECT title
 FROM movies
 LIMIT 1 OFFSET 1 # OFFSET пропуск
+ ==
+  SELECT * 
+  FROM products 
+  DESC  LIMIT 5
   ==
 SELECT name, prise * delivery
 FROM sales
@@ -67,6 +71,133 @@ SELECT *
 FROM songs 
 WHERE length > 3 
   ==
+SELECT  name , prise 
+FROM desserts 
+WHERE name LIKE '% chocolate%'  
+  ==
+ SELECT name, email
+FROM user 
+WHERE status = 'active'         
+  ==
+SELECT name 
+FROM students 
+WHERE country = 'USA' 
+  ==
+SELECT * 
+FROM " books" 
+WHERE genre = ' Fiction ' 
+  ==
+ SELECT titles 
+ FROM books 
+ WHERE category = "novel" 
+ ==
+ SELECT titles 
+ FROM books 
+ WHERE year = 2000
+ ==
+ SELECT name 
+ FROM products 
+ WHERE quantity <>0;
+ ==
+ SELECT title 
+ FROM books 
+ WHERE LOWER (title) LIKE '%robots%'; # Можно использовать UPPER и LOWER для поиска без учета регистра.
+ ==
+SELECT MIN(year)
+FROM movies;
+==
+SELECT MAX(year)
+FROM movies;
+==
+SELECT COUNT (число) # Подсчитывает количество записей
+FROM movies;
+COUNT()
+==
+SELECT SUM (price) # Вычисляет общую суму значачений
+FROM products;
+SUM()
+==
+SELECT AVG (price) # AVG -вычисляет среднее значение
+FROM products
+==
+SELECT SUM (price + delivery) AS revenue # Выберите сумму цена + доставка доход изпродаж где стататус завешеный
+FROM sales 
+WHERE status = " completed  "
+==
+SELECT genre, AVG (budget) # Выбор жанра средний бюджет из фильмов сгрупированых по  жанру
+FROM movies
+GROUP BY genre;
+==
+SELECT topic, SUM (LIKES) # Извлеч сумму лайков для каждой теммы
+FROM posts 
+GROUP BY topic 
+==
+SELECT product, MAX(price)
+FROM sales
+WHERE city = 'NEW YORK'
+GROUP BY products;
+==
+SELECT department, COUNT(*) # Сгрупировать по депортаменту где зарплаты работников больше 5000
+FROM emploees
+WHERE salary > 5000
+GROUP BY department
+==
+SELECT class, AVG (scope) # Это фильтр, который оставляет только те строки (классы), у которых средняя оценка выше 85.
+FROM students
+GROUP BY class
+HAVING AVG (scope) > 85
+==
+SELECT department, AVG (salary) # Это фильтр, который оставляет только те отделы, у которых средняя зарплата превышает 5000.
+FROM emploees
+GROUP BY department 
+HAVING AVG (salary) >5000
+==
+SELECT DISTINCT name # Ключевое слово DISTINCT означает, что в результате будут только уникальные имена, хранящиеся в таблице
+FROM employees;
+==
+SELECT * 
+FROM products 
+WHERE category = 'Glothing' OR categoryn = 'Shoes'; # где товары относятся к категории "Одежда" или "Обувь".
+==
+SELECT *  # извлеч значение не являющиеся null
+FROM movies 
+WHERE  genre IS NOT NULL 
+==
+SELECT name   # пользователей, у которых нет информации о прогрессе
+FROM users 
+WHERE progress IS NULL
+==
+SELECT *    # записи в таблице, где жанр фильма не указан или не заполнен.
+FROM movies 
+WHERE genre IS NULL
+==
+SELECT DISTINCT genre  # То есть, он вернет список всех уникальных жанров фильмов, которые есть в этой таблице, исключая повторяющиеся значения.
+FROM movies
+==
+SELECT *  # Последний с конца
+FROM students 
+ORDER BY id DESC LIMIT 10
+==
+SELECT * # второц с конца
+FROM students 
+ORDER BY id DESC LIMIT 1, 1
+==
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+          
+          
         
           
           
