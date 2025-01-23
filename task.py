@@ -230,6 +230,76 @@ FROM games
 WHERE city = 'Miami'
 GROUP BY team
 ==
+UPDATE students SET name = 'Donald' 
+WHERE name = 'VLADIMIR'
+==
+insert into `groups` (title, start_date, end_date) 
+VALUES ('QA testers', 'oct 2024', 'feb 2025')
+==
+insert into books (title, taken_by_student_id) 
+VALUES ('Python3', 3263)
+==
+SELECT * 
+from students join books 
+on students.id = books.taken_by_student_id 
+--  Этот SQL-запрос выполняет внутреннее соединение (JOIN) двух таблиц: students и books,
+--  используя поле id из таблицы students и поле taken_by_student_id из таблицы books. 
+--  Результат будет включать строки, где значение students.id соответствует значению 
+--  books.taken_by_student_id, то есть он покажет всех студентов и книги, которые были взяты ими.
+==
+SELECT * 
+from students 
+left join books 
+on students.id = books.taken_by_student_id 
+-- Этот SQL-запрос делает выборку всех записей из таблицы students, при этом выполняется левое соединение 
+-- с таблицей books на основании того, что поле students.id соответствует полю books.taken_by_student_id.
+-- Если студент взял книгу (то есть есть соответствие по taken_by_student_id), то информация о книге будет включена.
+-- Если студент не брал книг, данные по нему все равно будут в результате, но поля из таблицы books будут заполнены 
+-- значением NULL.
+==
+SELECT * 
+from students 
+right join books 
+on students.id = books.taken_by_student_id 
+-- Этот SQL-запрос выполняет выборку всех записей из таблицы books и присоединяет к ним соответствующие 
+-- записи из таблицы students с помощью правого соединения (RIGHT JOIN) по условию, что поле students.id 
+-- соответствует полю books.taken_by_student_id.
+-- Все записи из таблицы books.
+-- Если студент взял книгу (то есть есть соответствие по taken_by_student_id), информация о студенте будет 
+-- включена.
+-- Если книга не была взята студентом (нет соответствующего student.id), данные о студенте будут NULL.
+==
+-- Все оценки студента
+-- Выбираем имя, фамилию студента, значение оценки и ID занятия
+select students.name, students.second_name, marks.value, marks.lesson_id
+from students
+-- Соединяем таблицу marks с таблицей students по полю student_id
+left join marks on students.id = marks.student_id
+-- Фильтруем результаты, чтобы выбрать записи только для студента с именем "Vladimir" и фамилией "Shambaryan"
+where name = 'Donald'
+and second_name = 'Trump'
+==
+-- Все книги, которые находятся у студента
+-- Выбираем имя, фамилию студента и название книги
+select students.name, students.second_name, books.title
+from students
+-- Соединяем таблицу books с таблицей students по полю taken_by_student_id
+left join books on students.id = books.taken_by_student_id
+-- Фильтруем результаты, чтобы выбрать записи только для студента с именем "Vladimir" и фамилией "Shambaryan"
+where students.name = 'Donald'
+and students.second_name = 'Trump'
+==
+SELECT students.name, students.second_name, `groups`.title AS group_title, `groups`.start_date, `groups`.end_date, 
+       subjets.title AS subject_title, lessons.title AS lesson_title, lessons.subject_id, 
+       marks.value AS mark_value, marks.lesson_id, books.title AS book_title
+FROM students
+LEFT JOIN `groups` ON students.group_id = `groups`.id
+LEFT JOIN marks ON students.id = marks.student_id
+LEFT JOIN lessons ON marks.lesson_id = lessons.id
+LEFT JOIN subjets ON lessons.subject_id = subjets.id
+LEFT JOIN books ON students.id = books.taken_by_student_id
+WHERE students.name = 'Donald' AND students.second_name = 'Trump';
+==
 
 
 
