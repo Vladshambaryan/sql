@@ -240,7 +240,7 @@ insert into books (title, taken_by_student_id)
 VALUES ('Python3', 3263)
 ==
 SELECT * 
-from students join books 
+FROM students JOIN books 
 on students.id = books.taken_by_student_id 
 --  Этот SQL-запрос выполняет внутреннее соединение (JOIN) двух таблиц: students и books,
 --  используя поле id из таблицы students и поле taken_by_student_id из таблицы books. 
@@ -248,8 +248,8 @@ on students.id = books.taken_by_student_id
 --  books.taken_by_student_id, то есть он покажет всех студентов и книги, которые были взяты ими.
 ==
 SELECT * 
-from students 
-left join books 
+FROM students 
+LEFT JOIN books 
 on students.id = books.taken_by_student_id 
 -- Этот SQL-запрос делает выборку всех записей из таблицы students, при этом выполняется левое соединение 
 -- с таблицей books на основании того, что поле students.id соответствует полю books.taken_by_student_id.
@@ -258,8 +258,8 @@ on students.id = books.taken_by_student_id
 -- значением NULL.
 ==
 SELECT * 
-from students 
-right join books 
+FROM students 
+RIGHT JOIN books 
 on students.id = books.taken_by_student_id 
 -- Этот SQL-запрос выполняет выборку всех записей из таблицы books и присоединяет к ним соответствующие 
 -- записи из таблицы students с помощью правого соединения (RIGHT JOIN) по условию, что поле students.id 
@@ -271,23 +271,22 @@ on students.id = books.taken_by_student_id
 ==
 -- Все оценки студента
 -- Выбираем имя, фамилию студента, значение оценки и ID занятия
-select students.name, students.second_name, marks.value, marks.lesson_id
-from students
+SELECT students.name, students.second_name, marks.value, marks.lesson_id
+FROM students
 -- Соединяем таблицу marks с таблицей students по полю student_id
-left join marks on students.id = marks.student_id
+LEFT JOIN marks on students.id = marks.student_id
 -- Фильтруем результаты, чтобы выбрать записи только для студента с именем "Vladimir" и фамилией "Shambaryan"
-where name = 'Donald'
-and second_name = 'Trump'
+WHERE name = 'Donald'
+AND second_name = 'Trump'
 ==
 -- Все книги, которые находятся у студента
 -- Выбираем имя, фамилию студента и название книги
-select students.name, students.second_name, books.title
-from students
+SELECT students.name, students.second_name, books.title
+FROM students
 -- Соединяем таблицу books с таблицей students по полю taken_by_student_id
-left join books on students.id = books.taken_by_student_id
+LEFT JOIN books on students.id = books.taken_by_student_id
 -- Фильтруем результаты, чтобы выбрать записи только для студента с именем "Vladimir" и фамилией "Shambaryan"
-where students.name = 'Donald'
-and students.second_name = 'Trump'
+WHERE students.name = 'Donald' AND students.second_name = 'Trump'
 ==
 SELECT students.name, students.second_name, `groups`.title AS group_title, `groups`.start_date, `groups`.end_date, 
        subjets.title AS subject_title, lessons.title AS lesson_title, lessons.subject_id, 
