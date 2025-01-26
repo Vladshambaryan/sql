@@ -20,13 +20,13 @@
 SELECT year
 FROM movies
   ==
- SELECT tiitle
+SELECT tiitle
 FROM movies 
   ==
- SELECT id, name
+SELECT id, name
 FROM products
   ==
-  SELECT *
+SELECT *
 FROM departments
   ==
 SELECT * 
@@ -36,7 +36,7 @@ SELECT *
 FROM costomers
 Order by age DESC
   ==
- SELECT *
+SELECT *
 FROM costomers
 Order by age ASC
   ==
@@ -44,7 +44,7 @@ SELECT *      # LIMIT используется для пропуска умен�
 FROM emploers 
 LIMIT 10 
   ==
- SELECT *     #  Сортирует записи в порядке убывания (от наибольшего значения к наименьшему)
+SELECT *     #  Сортирует записи в порядке убывания (от наибольшего значения к наименьшему)
 FROM products 
 ORDER BY price DESC LIMIT 10 #  Ограничивает результат выборки 10 первыми строками 
   ==
@@ -52,57 +52,57 @@ SELECT title
 FROM movies
 LIMIT 1 OFFSET 1 # OFFSET пропуск
  ==
-  SELECT * 
-  FROM products 
-  DESC  LIMIT 5
-  ==
+SELECT * 
+FROM products 
+DESC  LIMIT 5
+==
 SELECT name, prise * delivery
 FROM sales
-  ==
+==
 SELECT * 
 FROM studio 
 WHERE name = "walt Disney"
-  ==
+==
 SELECT title
 FROM movies 
 WHERE gear > 2000          
-  ==
+==
 SELECT * 
 FROM songs 
 WHERE length > 3 
-  ==
+==
 SELECT  name , prise 
 FROM desserts 
 WHERE name LIKE '% chocolate%'  
-  ==
- SELECT name, email
+==
+SELECT name, email
 FROM user 
 WHERE status = 'active'         
-  ==
+==
 SELECT name 
 FROM students 
 WHERE country = 'USA' 
-  ==
+==
 SELECT * 
 FROM " books" 
 WHERE genre = ' Fiction ' 
-  ==
- SELECT titles 
- FROM books 
- WHERE category = "novel" 
+==
+SELECT titles 
+FROM books 
+WHERE category = "novel" 
+==
+SELECT titles 
+FROM books 
+WHERE year = 2000
+==
+SELECT name 
+FROM products 
+WHERE quantity <>0;
  ==
- SELECT titles 
- FROM books 
- WHERE year = 2000
- ==
- SELECT name 
- FROM products 
- WHERE quantity <>0;
- ==
- SELECT title 
- FROM books 
- WHERE LOWER (title) LIKE '%robots%'; # Можно использовать UPPER и LOWER для поиска без учета регистра.
- ==
+SELECT title 
+FROM books 
+WHERE LOWER (title) LIKE '%robots%'; # Можно использовать UPPER и LOWER для поиска без учета регистра.
+==
 SELECT MIN(year)
 FROM movies;
 ==
